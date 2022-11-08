@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/CSS/navbar.css">
+    <link rel="stylesheet" href="/CSS/login.css">
+
+
+    <title>Login Page</title>
+</head>
+
+<body>
+
+    <!-- Nav Bar -->
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fa fa-bars"></i>
+        </label>
+        <label for="" class="logo">Master-U</label>
+        <ul>
+            <li class="active"><a href="/" class="nav_item">Home</a></li>
+            <li><a href="/" class="nav_item">Exams</a></li>
+            <li><a href="/Login" class="nav_item">Updates</a></li>
+            <li><a href="/Login" class="nav_item">FAQs</a></li>
+            <li><a href="/Login" class="nav_item">About</a></li>
+            <li><a href="/Login" class="nav_item">Contact Us</a></li>
+            <li><a href="/Login" id="Login_btn" class="active logsign">Log in</a></li>
+
+        </ul>
+    </nav>
+
+
+    <div class="grid">
+        <div class="wrapper">
+            <div class="title-text">
+                <div class="title login">
+                    Login Form
+                </div>
+                <div class="title signup">
+                    Signup Form
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="slide-controls">
+                    <input type="radio" name="slide" id="login" checked>
+                    <input type="radio" name="slide" id="signup">
+                    <label for="login" class="slide login">Login</label>
+                    <label for="signup" class="slide signup">Signup</label>
+                    <div class="slider-tab"></div>
+                </div>
+
+
+                <div class="form-inner">
+                    <form action="/login" name="f1" onsubmit="return validateform1()" method="post" class="login">
+                        <div class="field">
+                            <input type="email" name="email" id="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="field">
+                            <input type="password" name="password" id="password" placeholder="Password" required>
+                        </div>
+                        <div class="pass-link">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                        <div class="field btn">
+                            <div class="btn-layer"></div>
+                            <input type="submit" value="Login">
+                        </div>
+                        <div class="signup-link">
+                            New Memeber? <a href="">Signup</a>
+                        </div>
+                    </form>
+                    <form action="/signup" name="f2" id="signup" method="post" onsubmit="return validateform2()" class="signup">
+                        <div class="field">
+                            <input type="email" name="email" id="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="field">
+                            <input type="password" name="password" id="password" placeholder="Password" required>
+                        </div>
+                        <div class="field">
+                            <input type="password" name="password1" id="password1" placeholder="Confirm password" required>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="username" id="username" placeholder="Username" required>
+                        </div>
+                        <div class="field">
+                            <input type="date" name="dob" id="dob" placeholder="Date Of Birth" required>
+                        </div>
+                        <div class="field">
+                            <input type="profession" name="profession" id="profession" placeholder="Profession" required>
+                        </div>
+                        <div class="field">
+                            <input type="info" name="info" id="info" placeholder="Additional Info" required>
+                        </div>
+                        <div class="field btn">
+                            <div class="btn-layer"></div>
+                            <input type="submit" value="Signup">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const loginText = document.querySelector(".title-text .login");
+        const loginForm = document.querySelector("form.login");
+        const loginBtn = document.querySelector("label.login");
+        const signupBtn = document.querySelector("label.signup");
+        const signupLink = document.querySelector("form .signup-link a");
+        signupBtn.onclick = (() => {
+            loginForm.style.marginLeft = "-50%";
+            loginText.style.marginLeft = "-50%";
+        });
+        loginBtn.onclick = (() => {
+            loginForm.style.marginLeft = "0%";
+            loginText.style.marginLeft = "0%";
+        });
+        signupLink.onclick = (() => {
+            signupBtn.click();
+            return false;
+        });
+    </script>
+
+
+    <script>
+        function validateform2() {
+            var name = document.f2.email.value;
+            var password = document.f2.password.value;
+            var password1 = document.f2.password1.value;
+
+
+            var atposition = name.indexOf("@");
+            var dotposition = name.lastIndexOf(".");
+            if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= name.length) {
+                alert("Please enter a valid e-mail address \n atpostion:" + atposition + "\n dotposition:" + dotposition);
+                return false;
+            } else if (name == null || name == "") {
+                alert("Name can't be blank");
+                return false;
+            } else if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            } else if (password == password1) {
+                return true;
+            } else if (password !== password1) {
+                alert("password must be same!");
+                return false;
+            }
+        }
+
+
+        function validateform1() {
+            var name = document.f1.email.value;
+            var password = document.f1.password.value;
+
+
+            var atposition = name.indexOf("@");
+            var dotposition = name.lastIndexOf(".");
+            if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= name.length) {
+                alert("Please enter a valid e-mail address \n atpostion:" + atposition + "\n dotposition:" + dotposition);
+                return false;
+            } else if (name == null || name == "") {
+                alert("Name can't be blank");
+                return false;
+            } else if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+        }
+    </script>
+
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+</html>

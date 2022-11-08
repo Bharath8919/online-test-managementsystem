@@ -1,0 +1,68 @@
+
+
+
+  
+  .glow {
+    font-size: 100px;
+    color: #fff;
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ee0fa4, 0 0 40px #d11171, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ec9ec5, 0 0 40px #f390c1, 0 0 50px #f1a0c9, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  }
+
+  img {
+    border-radius: 10px;
+   ;
+  }
+
+button{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: large;
+    width:400px;
+    height:60px;
+    background-color:rgb(253, 253, 94);
+    border-radius:9px;
+    border:3px solid black;
+    box-shadow: 2px 3px 2px 3px black;
+}
+.Engg_bottomPart{
+    padding-left:15px;
+    padding-right:15px;
+    padding-bottom: 20px;
+}
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: rgb(102, 76, 161);
+    justify-content: center;
+}
+    
+.flex-container>div {
+    background-color: #f1f1f1;
+        border: 3mm ridge rgba(300, 28, 29, 0.6);
+        border-style: inset;
+        width: 100%;
+        height: 330px;
+        margin: 90px;
+        text-align: center;
+        line-height: 75px;
+        font-size: 30px;
+    }
+    * {box-sizing: border-box;}
+
+    .container {
+      position: relative;
+      width: 50%;
+      max-width: 300px;
+    }
+    

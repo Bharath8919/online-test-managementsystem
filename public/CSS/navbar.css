@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,900&family=Rock+3D&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+nav{
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+}
+
+nav{
+    background-color: rgb(78, 228, 233);
+    height: 75px;
+    width: 100%;
+}
+
+label.logo{
+    color: rgb(43, 38, 38);
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+    font-family: 'Merriweather', serif;
+}
+
+nav ul{
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 20px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    
+}
+
+.nav_item{
+    position: relative;
+    color: rgb(88, 88, 88);
+    text-decoration: none;
+}
+.nav_item:hover{
+    color: rgb(0, 0, 0);
+}
+  
+/* nav ul .active{
+    color: rgb(0, 0, 0);
+} */
+
+.nav_item::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+  
+.nav_item:hover::before {
+    transform: scaleX(1);
+}
+
+.nav_item:active{
+    background: none;
+    color: black;
+}
+
+#Login_btn, #Signup_btn{
+    background-color: rgb(117, 115, 115);
+    color: rgb(255, 255, 255);
+    padding: 7.4px;
+    border-radius: 5px;
+}
+
+#Login_btn:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#Signup_btn:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+/* 
+#Login_btn::after{
+    background-color: rgb(0, 0, 0);
+    color: white;
+} */
+
+.checkbtn{
+    font-size: 30px;
+    color: rgb(14, 13, 13);
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check{
+    display: none;
+}
+
+@media (max-width: 1130px) {
+    nav ul li{
+        margin: 0 13px;
+    }
+}
+
+@media (max-width: 1052px) {
+    label.logo{
+        font-size: 30px;
+        padding-left: 50px;
+    }
+    
+    nav ul li{
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 990px) {
+    nav ul li{
+        margin: 0 8px;
+    }
+}
+
+@media (max-width: 952px) {
+    nav ul li a{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 885px) {
+    .checkbtn{
+        display: block;
+    }
+
+    nav ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background-color: rgb(218, 177, 124);
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: .5s;
+    }
+
+    nav ul li{
+        display: block;
+    }
+
+    nav ul li a{
+        font-size: 20px;
+    }
+
+    .nav_item:hover, .nav_item:active{
+        background: none;
+        color: black;
+    }
+
+    #check:checked ~ ul{
+        left: 0;
+    }
+}
+
+@media (max-width: 402px) {
+    label.logo{
+        font-size: 23px;
+        padding-left: 30px;
+    }
+
+    .checkbtn{
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 324px) {
+    label.logo{
+        font-size: 20px;
+        padding-left: 19px;
+    }
+
+    .checkbtn{
+        font-size: 20px;
+    }
+}

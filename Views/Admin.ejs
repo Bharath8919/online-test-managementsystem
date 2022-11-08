@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <!--<title> Responsiive Admin Dashboard | CodingLab </title>-->
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/CSS/Admin.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <span class="logo_name">Master-U</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#" class="active">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user_display">
+                    <i class='bx bx-box'></i>
+                    <span class="links_name">User Data</span>
+                </a>
+            </li>
+
+           <!--  <li>
+                <a href="#">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Team</span>
+                </a>
+            </li> -->
+            <li>
+                <a href="/message_display">
+                    <i class='bx bx-message'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="/">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Dashboard</span>
+            </div>
+            <div class="search-box">
+                <input type="text" id="myInput" onkeyup="myFunction()" title="Type in a name" placeholder="Search...">
+                <i class='bx bx-search'></i>
+            </div>
+            <div class="profile-details">
+                <!--<img src="images/profile.jpg" alt="">-->
+                <span class="admin_name">Admin</span>
+                <i class='bx bx-chevron-down'></i>
+            </div>
+        </nav>
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Users</div>
+                        <div class="number">5</div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Exams</div>
+                        <div class="number">03</div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Books</div>
+                        <div class="number">56</div>
+                    </div>
+                </div>
+                <div class="box ">
+                    <div class="right-side">
+                        <div class="box-topic ">Total Messages</div>
+                        <div class="number ">32</div>
+                    </div>
+                    <i></i>
+                </div>
+            </div>
+
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">Admins</div>
+                    
+                    <div>
+                        <table id="myTable">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                            </tr>
+                            <tr>
+                                <td>Varshith</td>
+                                <td>admin@gmail.com</td>
+                                <td>admin123</td>
+                            </tr>
+                            <tr>
+                                <td>Yashaswini</td>
+                                <td>admin@gmail.com</td>
+                                <td>admin123</td>
+                            </tr>
+                            <tr>
+                                <td>Deekshitha</td>
+                                <td>admin@gmail.com</td>
+                                <td>admin123</td>
+                            </tr>
+                            <tr>
+                                <td>Nehith Chaitanya</td>
+                                <td>admin@gmail.com</td>
+                                <td>admin123</td>
+                            </tr>
+                            <tr>
+                                <td>Viswanath</td>
+                                <td>admin@gmail.com</td>
+                                <td>admin123</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+
+    </section>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function() {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+
+
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+.create {
+    width: 1px;
+    height: 1px;
+}
+
+.image {
+    width: 100%;
+    Height: 400px;
+}
+
+.org_name {
+    color: black;
+}
+
+.container-fluid {
+    background-color: black;
+}
+
+.container-xxl {
+    background-color: seagreen;
+    opacity: 60%;
+}
+
+.container {
+    background-color: lavender;
+    border: 1cm;
+}
+
+#div1 {
+    background-color: dimgrey;
+}
+
+.h3 {
+    color: midnightblue;
+    font-style: italic;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 2cm;
+}
+
+li {
+    font-size: 3vh;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: rgb(230, 222, 222);
+    justify-content: center;
+}
+
+.flex-container>div {
+    background-color: #f1f1f1;
+    border: 4mm ridge rgba(24, 28, 29, 0.6);
+    border-style: inset;
+    width: 400px;
+    height: 250px;
+    margin: 100px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+}
