@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <!--<title> Responsiive Admin Dashboard | CodingLab </title>-->
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/CSS/Admin.css">
+    <link rel="stylesheet" href="/CSS/dark-theme.css">
+    <script src="/HTML/theme.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <span class="logo_name">Admin</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#" class="active">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user_display">
+                    <i class='bx bx-box'></i>
+                    <span class="links_name">User Data</span>
+                </a>
+            </li>
+
+           <!--  <li>
+                <a href="#">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Team</span>
+                </a>
+            </li> -->
+            <li>
+                <a href="/message_display">
+                    <i class='bx bx-message'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/questions">
+                    <i class='bx bx-question-mark'></i>
+                    <span class="links_name">Question Bank</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/analytics">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">Analytics</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="/logout">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Dashboard</span>
+            </div>
+            <div class="search-box">
+                <input type="text" id="myInput" onkeyup="myFunction()" title="Type in a name" placeholder="Search...">
+                <i class='bx bx-search'></i>
+            </div>
+            <div class="theme-switch-wrapper me-3">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                </label>
+            </div>
+            <div class="profile-details" onclick="toggleAdminDropdown()" style="cursor: pointer; position: relative;">
+                <img src="/IMAGES/user-icon.png" alt="Admin" style="width: 32px; height: 32px; border-radius: 50%; margin-right: 10px;">
+                <span class="admin_name" style="margin-right: 5px;">Admin</span>
+                <i class='bx bx-chevron-down'></i>
+                
+                <div id="adminDropdown" class="admin-dropdown" style="display: none; position: absolute; top: 60px; right: 0; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 150px; z-index: 100;">
+                    <ul style="list-style: none; padding: 5px 0; margin: 0;">
+                        <li><a href="/logout" style="display: block; padding: 10px 20px; color: #e63946; text-decoration: none; font-size: 15px;"><i class='bx bx-log-out' style="vertical-align: middle; margin-right: 8px; font-size: 18px;"></i> Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+            <script>
+                function toggleAdminDropdown() {
+                    const dropdown = document.getElementById('adminDropdown');
+                    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+                }
+                
+                window.addEventListener('click', function(e) {
+                    const profileDetails = document.querySelector('.profile-details');
+                    const dropdown = document.getElementById('adminDropdown');
+                    if (profileDetails && dropdown && !profileDetails.contains(e.target)) {
+                        dropdown.style.display = 'none';
+                    }
+                });
+            </script>
+        </nav>
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Users</div>
+                        <div class="number"><%= totalUsers %></div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">System Health</div>
+                        <div class="number" style="color: <%= health.status === 'Healthy' ? '#27ae60' : (health.status === 'Degraded' ? '#f39c12' : '#e74c3c') %>">
+                            <%= health.status %>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Circuit State</div>
+                        <div class="number" style="font-size: 18px; color: <%= health.circuitBreaker.state === 'closed' ? '#27ae60' : '#e74c3c' %>">
+                            <%= health.circuitBreaker.state.toUpperCase() %>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Bulkhead Q</div>
+                        <div class="number"><%= health.circuitBreaker.metrics.pending %></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sales-boxes" style="margin-bottom: 20px;">
+                <div class="recent-sales box" style="width: 100%;">
+                    <div class="title">Resilience Metrics (Circuit Breaker)</div>
+                    <div style="display: flex; justify-content: space-around; padding: 20px; text-align: center; flex-wrap: wrap;">
+                        <div style="margin: 10px;">
+                            <div style="font-size: 24px; font-weight: bold; color: #27ae60;"><%= health.circuitBreaker.metrics.successes %></div>
+                            <div style="color: #666;">Successes</div>
+                        </div>
+                        <div style="margin: 10px;">
+                            <div style="font-size: 24px; font-weight: bold; color: #e74c3c;"><%= health.circuitBreaker.metrics.failures %></div>
+                            <div style="color: #666;">Failures</div>
+                        </div>
+                        <div style="margin: 10px;">
+                            <div style="font-size: 24px; font-weight: bold; color: #f39c12;"><%= health.circuitBreaker.metrics.rejections %></div>
+                            <div style="color: #666;">Rejections</div>
+                        </div>
+                        <div style="margin: 10px;">
+                            <div style="font-size: 24px; font-weight: bold; color: #9b59b6;"><%= health.circuitBreaker.metrics.timeouts %></div>
+                            <div style="color: #666;">Timeouts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">Admins</div>
+                    
+                    <div>
+                        <table id="myTable">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                            </tr>
+                            <% admins.forEach(admin => { %>
+                            <tr>
+                                <td><%= admin.username %></td>
+                                <td><%= admin.email %></td>
+                                <td><%= admin.password %></td>
+                            </tr>
+                            <% }) %>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+
+    </section>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function() {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+
+
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

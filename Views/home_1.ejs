@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/navbar.css">
+    <link rel="stylesheet" href="/CSS/Home.css">
+    <link rel="stylesheet" href="/CSS/Home-Responsive.css">
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'>
+    <link rel="stylesheet" href="/CSS/dark-theme.css">
+    <script src="/HTML/theme.js"></script>
+
+    <!-- Online Test System -->
+    <title>Home Page</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        /* Real-time Notification Toast */
+        #notification-toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 10000;
+            animation: slideUp 0.5s ease-out;
+            border-left: 5px solid #f1c40f;
+            max-width: 350px;
+            pointer-events: auto;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast-content { display: flex; align-items: center; }
+        .toast-icon { font-size: 24px; margin-right: 15px; color: #f1c40f; }
+        .toast-text { font-size: 14px; line-height: 1.4; }
+        .toast-close { margin-left: 15px; cursor: pointer; opacity: 0.7; }
+        .toast-close:hover { opacity: 1; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Nav Bar -->
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+      <i class="fa fa-bars"></i>
+    </label>
+        <ul>
+            <li class="active"><a href="home_1" class="nav_item active">Home</a></li>
+            <li><a href="#h4" class="nav_item">Exams</a></li>
+            
+            <li><a href="/my-progress" class="nav_item">My Progress</a></li>
+            <li><a href="/leaderboard" class="nav_item">Leaderboard</a></li>
+            <li class="nav-item d-flex align-items-center">
+                <div class="theme-switch-wrapper me-3">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0; background: none;">
+                    <img src="/IMAGES/user-icon.png" alt="Profile" width="38px" style="border-radius: 50%;">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown" style="background-color: white; min-width: 180px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-top: -5px; padding: 5px 0;">
+                    <li><a class="dropdown-item" href="/dir_profile" style="color: #333; line-height: normal; font-size: 15px; text-transform: none; padding: 10px 20px;"><i class="fa fa-user" style="margin-right: 10px; font-size: 18px; width: 20px; text-align: center;"></i> My Information</a></li>
+                    <li><hr class="dropdown-divider" style="margin: 0;"></li>
+                    <li><a class="dropdown-item" href="/logout" style="color: #e63946; line-height: normal; font-size: 15px; text-transform: none; padding: 10px 20px;"><i class='bx bx-log-out' style="margin-right: 10px; font-size: 20px; vertical-align: middle; width: 20px; text-align: center;"></i> Log Out</a></li>
+                </ul>
+            </li>
+            <!-- <li><a href="Signup.html" id="Signup_btn" class="logsign">Signup</a></li> -->
+        </ul>
+    </nav>
+
+    <!-- Portion-1 -->
+    <div class="flexbox">
+        <div class="item_1">
+            <h2>Satyabhama University</h2>
+            <h3>Welcome to Online exam system</h3>
+        </div>
+
+        <div class="item_2">
+            <img src="/IMAGES/home_1.png" alt="Not found">
+        </div>
+    </div>
+
+    <h4 id="h4">EXAMS</h4>
+
+    <!-- cards -->
+    <div class="cards cards_bg">
+        <div class="cards_1 card" style="width: 18rem;">
+            <img src="/IMAGES/JeeMains.jpeg" class="card-img-top" alt="Not found">
+            <div class="card-body">
+                <h5 class="card-title">JEE Mains</h5>
+                <p class="card-text">JEE Main is exam with a lower level of difficulty. It comprises of two papers.</p>
+                <a href="/HTML/Jee_home.html" class="btnn">Explore More</a>
+            </div>
+        </div>
+
+        <div class="cards_1 card" style="width: 18rem;">
+            <img src="/IMAGES/Neet.jpeg" class="card-img-top" alt="Not found">
+            <div class="card-body">
+                <h5 class="card-title">NEET</h5>
+                <p class="card-text">NATIONAL ELIGIBILITY CUM ENTRANCE TEST will be conducted by National Testing Agency (NTA).</p>
+                <a href="/HTML/NeetHome.html" class="btnn">Explore More</a>
+            </div>
+        </div>
+
+        <div class="cards_1 card" style="width: 18rem;">
+            <img src="/IMAGES/Gate.jpeg" class="card-img-top" alt="Not found">
+            <div class="card-body">
+                <h5 class="card-title">GATE</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+                </p>
+                <a href="/HTML/gate_home.html" class="btnn">Explore More</a>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div id="notification-toast">
+        <div class="toast-content">
+            <div class="toast-icon"><i class='bx bxs-bell-ring'></i></div>
+            <div class="toast-text" id="notification-message">New update available!</div>
+            <div class="toast-close" onclick="closeToast()"><i class='bx bx-x'></i></div>
+        </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script>
+        // --- Socket.io Real-time Notifications ---
+        const socket = io();
+
+        socket.on('new-achievement', (data) => {
+            showToast(`🔥 <b>${data.username}</b> just scored <b>${data.score}%</b> in ${data.exam}!`);
+        });
+
+        socket.on('new-question', (data) => {
+            showToast(`🚀 New questions added to <b>${data.exam}</b>. Check them out!`);
+        });
+
+        function showToast(message) {
+            const toast = document.getElementById('notification-toast');
+            const msgEl = document.getElementById('notification-message');
+            msgEl.innerHTML = message;
+            toast.style.display = 'block';
+            
+            // Auto-hide after 8 seconds
+            setTimeout(closeToast, 8000);
+        }
+
+        function closeToast() {
+            document.getElementById('notification-toast').style.display = 'none';
+        }
+
+        // --- Existing Theme/Color Logic ---
+        let colors = ['black', 'green', 'orange', 'red']
+        let index = 0;
+
+        function changeColor() {
+            const h4 = document.getElementById('h4');
+            if (h4) {
+                h4.style.setProperty('color', colors[index++]);
+                index %= colors.length;
+            }
+        }
+
+        let interval = setInterval(changeColor, 1000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Analytics | Online Test Management</title>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/CSS/Admin.css">
+    <link rel="stylesheet" href="/CSS/dark-theme.css">
+    <script src="/HTML/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .analytics-container {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        .chart-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        .dark-mode .chart-box {
+            background: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <span class="logo_name">Admin</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/admin"><i class='bx bx-grid-alt'></i><span class="links_name">Dashboard</span></a></li>
+            <li><a href="/user_display"><i class='bx bx-box'></i><span class="links_name">User Data</span></a></li>
+            <li><a href="/message_display"><i class='bx bx-message'></i><span class="links_name">Messages</span></a></li>
+            <li><a href="/admin/questions"><i class='bx bx-question-mark'></i><span class="links_name">Question Bank</span></a></li>
+            <li><a href="/admin/analytics" class="active"><i class='bx bx-pie-chart-alt-2'></i><span class="links_name">Analytics</span></a></li>
+            <li class="log_out"><a href="/logout"><i class='bx bx-log-out'></i><span class="links_name">Log out</span></a></li>
+        </ul>
+    </div>
+
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Platform Analytics</span>
+            </div>
+            <div class="theme-switch-wrapper me-3">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" /><div class="slider round"></div>
+                </label>
+            </div>
+        </nav>
+
+        <div class="home-content" style="padding-top: 100px;">
+            <div class="analytics-container">
+                <!-- Bar Chart: Tests Taken per Exam -->
+                <div class="chart-box">
+                    <h3>Popularity: Tests Taken by Category</h3>
+                    <canvas id="examPopularityChart"></canvas>
+                </div>
+
+                <!-- Bar Chart: Average Scores per Exam -->
+                <div class="chart-box">
+                    <h3>Subject Performance (Avg Score %)</h3>
+                    <canvas id="subjectAverageChart"></canvas>
+                </div>
+
+                <!-- Pie Chart: Performance Overview -->
+                <div class="chart-box">
+                    <h3>Overall Performance Distribution</h3>
+                    <canvas id="performancePieChart"></canvas>
+                </div>
+
+                <!-- Line Chart: Platform Usage Trend -->
+                <div class="chart-box">
+                    <h3>Daily Tests Taken (Engagement)</h3>
+                    <canvas id="dailyTrendChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Data injected from EJS
+        const popularityData = <%- JSON.stringify(popularity) %>;
+        const dailyTrendData = <%- JSON.stringify(dailyTrend) %>;
+        const performanceData = <%- JSON.stringify(performance) %>;
+        const subjectAvgData = <%- JSON.stringify(subjectAverages) %>;
+
+        // Exam Popularity Chart
+        new Chart(document.getElementById('examPopularityChart'), {
+            type: 'bar',
+            data: {
+                labels: popularityData.map(item => item.exam_name),
+                datasets: [{
+                    label: 'Number of Attempts',
+                    data: popularityData.map(item => item.count),
+                    backgroundColor: '#3498db'
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } } }
+        });
+
+        // Subject Average Scores Chart
+        new Chart(document.getElementById('subjectAverageChart'), {
+            type: 'bar',
+            data: {
+                labels: subjectAvgData.map(item => item.exam_name),
+                datasets: [{
+                    label: 'Average Score (%)',
+                    data: subjectAvgData.map(item => item.avg_percentage),
+                    backgroundColor: '#9b59b6'
+                }]
+            },
+            options: { 
+                responsive: true, 
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, max: 100 } }
+            }
+        });
+
+        // Daily Trend Chart
+        new Chart(document.getElementById('dailyTrendChart'), {
+            type: 'line',
+            data: {
+                labels: dailyTrendData.map(item => item.date),
+                datasets: [{
+                    label: 'Tests Taken',
+                    data: dailyTrendData.map(item => item.count),
+                    borderColor: '#2ecc71',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Performance Pie Chart
+        new Chart(document.getElementById('performancePieChart'), {
+            type: 'pie',
+            data: {
+                labels: ['High (>80%)', 'Medium (50-80%)', 'Low (<50%)'],
+                datasets: [{
+                    data: [performanceData.high, performanceData.medium, performanceData.low],
+                    backgroundColor: ['#2ecc71', '#f1c40f', '#e74c3c']
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function() {
+            sidebar.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

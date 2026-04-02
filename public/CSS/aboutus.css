@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+*
+
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+    
+}
+.classback
+{
+    
+position: relative;
+min-height: 100vh;
+padding: 50px 100px;
+display: flex;
+justify-content: center;
+align-items:center;
+flex-direction:column;
+background: url(/IMAGES/aboutusneh.jpeg);
+
+background-size: cover;
+
+}
+
+.classback .about h1
+{
+    position: relative;
+    bottom: -40px;
+    right: 30px;
+    font-size:70px;
+
+
+}
+.desc .aboutus p
+{
+   position: relative;
+   top: 56px;
+   left: -40px;
+   width: 900px;
+   background: #808080;
+   border-radius:5px;
+   padding-left: 21px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   
+}
+.desc .ourmission
+{
+    position: relative;
+    top: 118px;
+    left: -173px;
+    background: #5F9EA0;
+    width: 600px;
+   border-radius: 5px;
+   padding-left: 21px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+
+}
+.corevalues 
+{
+    position: relative;
+    top: -78px;
+    left: 426px;
+    background: #FFA500;
+    width: 600px;
+   border-radius: 5px;
+   padding-left: 21px;
+   padding-top: 20px;
+   padding-bottom: 20px;
+
+}
+.objectives
+{
+    position: relative;
+    bottom: 78px;
+    right: 30px;
+    background: #D2691E;
+    width: 800px;
+    border-radius: 5px;
+    padding-left: 21px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+.theteam h1
+{
+      font-weight: 800;
+      font-size: 75px;
+      position: relative;
+      left: 250px;
+}
+.container {
+    display: grid;
+    grid-template-columns: 300px 300px 300px ;
+    margin-top: 50px;
+    
+    
+    grid-gap: 100px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+    font-family: 'Baloo Paaji 2', cursive;
+  }
+  
+  .card {
+    background-color: #222831;
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+  
+  .card__name {
+    margin-top: 15px;
+    font-size: 1.5em;
+  }
+  
+  .card__image {
+    height: 160px;
+    width: 160px;
+    border-radius: 10px;
+    border: 5px solid #272133;
+    margin-top: 20px;
+    
+  }

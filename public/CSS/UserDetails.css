@@ -1,0 +1,10 @@
+body{
+    
+    background: url('/IMAGES/login_bg1.jpg');
+    background-size: cover;
+}
+
+.container{
+    padding-top: 17vh;
+}
+

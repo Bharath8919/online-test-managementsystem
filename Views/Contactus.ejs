@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us page </title>
+    <script src="https://kit.fontawesome.com/b37952ff75.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="/CSS/contactus.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/navbar.css">
+    <link rel="stylesheet" href="/CSS/dark-theme.css"><script src="/HTML/theme.js"></script>
+
+
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+        <i class="fa fa-bars"></i>
+      </label>
+            <label for="" class="logo"></label>
+            <ul>
+                <li class="active"><a href="/home_1" class="nav_item">Home</a></li>
+                <li><a href="/home_1" class="nav_item">Exams</a></li>
+                <li><a href="/HTML/scroll.html" class="nav_item">Updates</a></li>
+                <li><a href="/HTML/faq.html" class="nav_item">FAQs</a></li>
+                <li><a href="/HTML/aboutus.html" class="nav_item">About</a></li>
+                <li><a href="/Contactus" class="nav_item active">Contact Us</a></li>
+                
+            <li><a href="/my-progress" class="nav_item">My Progress</a></li>
+            <li><a href="/leaderboard" class="nav_item">Leaderboard</a></li>
+            <li class="nav-item d-flex align-items-center">
+                <div class="theme-switch-wrapper me-3">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0; background: none;">
+                        <img src="/IMAGES/user-icon.png" alt="Profile" width="38px" style="border-radius: 50%;">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown" style="background-color: white; min-width: 180px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-top: -5px; padding: 5px 0;">
+                        <li><a class="dropdown-item" href="/dir_profile" style="color: #333; line-height: normal; font-size: 15px; text-transform: none; padding: 10px 20px;"><i class="fa fa-user" style="margin-right: 10px; font-size: 18px; width: 20px; text-align: center;"></i> My Information</a></li>
+                        <li><hr class="dropdown-divider" style="margin: 0;"></li>
+                        <li><a class="dropdown-item" href="/logout" style="color: #e63946; line-height: normal; font-size: 15px; text-transform: none; padding: 10px 20px;"><i class='bx bx-log-out' style="margin-right: 10px; font-size: 20px; vertical-align: middle; width: 20px; text-align: center;"></i> Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section class="contact">
+        <div class="content">
+            <h2>Contact us</h2>
+            <p>please contact us if you have any problem you can message us or you contact us<br> Details are given below</p>
+        </div>
+        <div class="container">
+            <div class="contactInfo">
+                <div class="box">
+                    <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                    <div class="text">
+                        <h3>Address</h3>
+                        <p>Kota Bharath,<br>Kothapalem,<br>Jaladanki Mandal,<br>Nellore District,<br>Andhra Pradesh - 524223.</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                    <div class="text">
+                        <h3>Email</h3>
+                        <p>contact@onlineexam.com</p>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="icon"><i class="fa fa-mobile" aria-hidden="true"></i></div>
+                    <div class="text">
+
+                        <h3>Phone</h3>
+                        <p>+91 8919483384</p>
+                    </div>
+                </div>
+
+                <div class="social-media">
+                    <p>Connect with us :</p>
+                    <div class="social-icons">
+                        <a href="#">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-snapchat" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="contactform">
+                <h2>Please send your message below</h2>
+
+                <form action="/contactus" id="form" method="post" name="form" onsubmit="return validateform()">
+
+                    <div class="formbox">
+                        <div class="inputbox w50">
+                            <input type="text" name="name" required>
+                            <span>Full Name</span>
+                        </div>
+                        <div class="inputbox w50">
+                            <input type="email" name="email" required>
+                            <span>Email Address</span>
+                        </div>
+                        <div class="inputbox w50">
+                            <input type="text" name="phone" required>
+                            <span>Mobile Number</span>
+                        </div>
+                        <div class="inputbox w500">
+                            <textarea name="message" required></textarea>
+                            <span>Write your Message..</span>
+                        </div>
+                        <div class="inputboxsubmit">
+                            <input type="submit" value="Send">
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function validateform() {
+            var name = document.form.email.value;
+            var atposition = name.indexOf("@");
+            var dotposition = name.lastIndexOf(".");
+            if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= name.length) {
+                alert("Please enter a valid e-mail address \n atpostion:" + atposition + "\n dotposition:" + dotposition);
+                return false;
+            } else if (name == null || name == "") {
+                alert("Email can't be blank");
+                return false;
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+</html>

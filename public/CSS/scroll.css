@@ -1,0 +1,73 @@
+#scroll-container {
+    background-color: rgb(234, 238, 172);
+    border-radius: 5px;
+    height: 20vh;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+body{
+    background: url('https://venngage-wordpress.s3.amazonaws.com/uploads/2018/09/Colorful-Circle-Simple-Background-Image-1.jpg');
+    background-size: cover;
+}
+
+nav{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+h3 {
+    color: aliceblue;
+}
+
+.first{
+    padding-top: 10vh;
+}
+
+#scroll-text {
+    height: 100%;
+    scroll-padding-right: 2cm;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    -moz-animation: my-animation 5s linear infinite;
+    -webkit-animation: my-animation 5s linear infinite;
+    animation: my-animation 5s linear infinite;
+}
+
+
+/* for Firefox */
+
+@-moz-keyframes my-animation {
+    from {
+        -moz-transform: translateY(100%);
+    }
+    to {
+        -moz-transform: translateY(-100%);
+    }
+}
+
+
+/* for Chrome */
+
+@-webkit-keyframes my-animation {
+    from {
+        -webkit-transform: translateY(100%);
+    }
+    to {
+        -webkit-transform: translateY(-100%);
+    }
+}
+
+@keyframes my-animation {
+    from {
+        -moz-transform: translateY(100%);
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%);
+    }
+    to {
+        -moz-transform: translateY(-100%);
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= subject_title %> Mock Test</title>
+    <link rel="stylesheet" href="/CSS/moc.css">
+    <link rel="shortcut icon" type="image/png" href="/IMAGES/mock.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/CSS/dark-theme.css">
+    <script src="/HTML/theme.js"></script>
+    <style>
+        .options label { display: block; margin: 10px 0; font-size: 16px; cursor: pointer; }
+        .options input { margin-right: 10px; }
+        .question-block { margin-bottom: 30px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        body { font-family: Arial, sans-serif; background: #ecf0f1; }
+        .container-custom { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        /* Proctoring Overlay */
+        #proctoring-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            color: white;
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        #proctoring-overlay h2 { color: #e74c3c; font-size: 2.5rem; }
+        #proctoring-overlay p { font-size: 1.2rem; max-width: 600px; margin: 20px 0; }
+        #proctoring-overlay .btn { padding: 12px 30px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="proctoring-overlay">
+        <h2>⚠️ PROCTORING VIOLATION</h2>
+        <p>You have switched tabs or minimized the browser. This event has been logged. Please stay on this page to complete your exam.</p>
+        <button class="btn btn-warning" onclick="resumeTest()">I Understand, Resume Test</button>
+    </div>
+    <div class="container-custom">
+        <header style="text-align: center; margin-bottom: 30px;">
+            <h1 style="color: #2c3e50;"><%= subject_title %> MOCK TEST</h1>
+            <p style="color: #7f8c8d;">Test your knowledge in <strong><%= subject_title %></strong></p>
+            <div style="float: right; text-align: right; background: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: -80px;">
+                <span style="font-size: 14px; color: #7f8c8d; display: block; margin-bottom: 5px;">Time Remaining</span>
+                <span id="exam-timer" style="font-size: 24px; font-weight: bold; color: #e74c3c; font-family: monospace;">60:00</span>
+            </div>
+            <div style="position: absolute; top: 10px; right: 10px;">
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+            </div>
+            <a href="/home_1" class="btn btn-secondary" style="float: left; margin-top: -65px;">Back to Home</a>
+        </header>
+
+        <section>
+            <div id="results"></div>
+            
+            <% if (questions.length === 0) { %>
+                <div class="alert alert-warning text-center">
+                    No questions available for this exam yet. Check back later!
+                </div>
+            <% } else { %>
+            <form name="quizForm" onsubmit="return submitAnswers()">
+                <% questions.forEach(function(q, index) { %>
+                    <div class="question-block">
+                        <h3><%= index + 1 %>. <%= q.question_text %></h3>
+                        <div class="options">
+                            <label><input type="radio" name="q<%= index + 1 %>" value="a"> a. <%= q.option_a %></label>
+                            <label><input type="radio" name="q<%= index + 1 %>" value="b"> b. <%= q.option_b %></label>
+                            <label><input type="radio" name="q<%= index + 1 %>" value="c"> c. <%= q.option_c %></label>
+                            <label><input type="radio" name="q<%= index + 1 %>" value="d"> d. <%= q.option_d %></label>
+                        </div>
+                    </div>
+                <% }); %>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="submit" class="btn btn-primary btn-lg" style="background-color: #3498db; border: none; padding: 15px 40px;">Submit Answers</button>
+                </div>
+            </form>
+            <% } %>
+
+        </section>
+        
+        <footer style="text-align: center; margin-top: 40px; color: #95a5a6;">
+            <p>&copy; Online Test Management System</p>
+        </footer>
+    </div>
+
+    <!-- Pass dynamic data to JS -->
+    <script>
+        window.dynamicAnswers = JSON.parse('<%- JSON.stringify(questions.map(q => q.correct_option)) %>');
+        window.dynamicExplanations = JSON.parse('<%- JSON.stringify(questions.map(q => q.explanation || "No explanation available.")) %>');
+        var timeLeft = 60 * 60; // 60 minutes
+        function startTimer() {
+            var timerDisplay = document.getElementById('exam-timer');
+            var timerInterval = setInterval(function() {
+                var m = Math.floor(timeLeft / 60);
+                var s = timeLeft % 60;
+                m = m < 10 ? '0' + m : m;
+                s = s < 10 ? '0' + s : s;
+                if (timerDisplay) {
+                    timerDisplay.innerText = m + ':' + s;
+                    if (timeLeft <= 300) { 
+                        timerDisplay.style.color = 'red';
+                    }
+                }
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    window.autoSubmitting = true;
+                    alert('Time is up! Submitting exam automatically.');
+                    if (document.forms['quizForm']) {
+                        submitAnswers();
+                    }
+                } else {
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+        window.addEventListener('load', startTimer);
+
+        // --- Tab-Switch Proctoring ---
+        let violationCount = 0;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                violationCount++;
+                console.log('Tab switch detected! Count: ' + violationCount);
+            } else {
+                if (violationCount > 0) {
+                    showProctoringWarning();
+                }
+            }
+        });
+
+        function showProctoringWarning() {
+            const overlay = document.getElementById('proctoring-overlay');
+            overlay.style.display = 'flex';
+        }
+
+        function resumeTest() {
+            document.getElementById('proctoring-overlay').style.display = 'none';
+        }
+    </script>
+    <script src="/HTML/moc.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
